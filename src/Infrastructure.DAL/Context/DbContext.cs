@@ -7,14 +7,14 @@ namespace Infrastructure.DAL.Context
 {
     public class DbContext<T>
     {
-        private readonly IMongoCollection<T> mongoCollection;
+        public IMongoCollection<T> Collection { get; }
 
         public DbContext(IDbSettings dbSettings)
         {
             var cliente = new MongoClient(dbSettings.ConnectionString);
             var database = cliente.GetDatabase(dbSettings.DatabaseName);
 
-            mongoCollection = database.GetCollection<T>(dbSettings.DatabaseName);
+            Collection = database.GetCollection<T>(dbSettings.DatabaseName);
         }
     }
 }
