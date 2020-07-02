@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.DAL.Repository
 {
-    public class Repository<T> : IModels<T> where T : class
+    public class Repository : IModels
     {
         private readonly IDbContext db;
 
@@ -16,28 +16,28 @@ namespace Infrastructure.DAL.Repository
             this.db = db;
         }
 
-        public async Task<T> Create(T objet)
+        public async Task<T> Create<T>(T objet) where T : class
         {
             await db.GetCollection<T>().InsertOneAsync(objet);
             return objet;
         }
 
-        public Task<bool> Delete(T objet)
+        public Task<bool> Delete<T>(T objet) where T : class
         {
             throw new NotImplementedException();
         }
 
-        public Task<T> Get(string id)
+        public Task<T> Get<T>(string id) where T : class
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<T>> Get()
+        public Task<IEnumerable<T>> Get<T>() where T : class
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Update(T objet)
+        public Task<bool> Update<T>(T objet) where T : class
         {
             throw new NotImplementedException();
         }

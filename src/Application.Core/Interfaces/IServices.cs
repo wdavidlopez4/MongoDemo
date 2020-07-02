@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Application.Core.Interfaces
 {
-    public interface IServices<T>
+    public interface IServices
     {
-        public Task<RegistroVM<T>> Guardar(RegistroVM<T> registroVM);
+        public Task<RegistroVM<T>> Guardar<T>(RegistroVM<T> registroVM) where T : class;
     }
 }

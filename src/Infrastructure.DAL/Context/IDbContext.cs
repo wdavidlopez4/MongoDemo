@@ -10,6 +10,6 @@ namespace Infrastructure.DAL.Context
     {
         public bool Connect<T>(T dbSettings) where T : IDbSettings;
 
-        public IMongoCollection<U> GetCollection<U>() where U : class;
+        public IMongoCollection<T> GetCollection<T>() where T : class;
     }
 }

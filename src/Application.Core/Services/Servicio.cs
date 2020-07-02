@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace Application.Core.Services
 {
-    public class Servicio<T> : IServices<T> where T : class
+    public class Servicio : IServices
     {
-        private readonly IModels<T> models;
+        private readonly IModels models;
 
-        public Servicio(IModels<T> models)
+        public Servicio(IModels models)
         {
             this.models = models;
         }
 
-        public async Task<RegistroVM<T>> Guardar(RegistroVM<T> registroVM)
+        public async Task<RegistroVM<T>> Guardar<T>(RegistroVM<T> registroVM) where T : class
         {
             var objeto = registroVM.Objet;
 
@@ -28,5 +28,6 @@ namespace Application.Core.Services
             };
 
         }
+
     }
 }

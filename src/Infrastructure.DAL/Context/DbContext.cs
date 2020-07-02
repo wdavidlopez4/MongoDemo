@@ -42,9 +42,9 @@ namespace Infrastructure.DAL.Context
         }
 
         //debolvemos la colleccion
-        public IMongoCollection<U> GetCollection<U> () where U : class
+        public IMongoCollection<T> GetCollection<T> () where T : class
         {
-            IMongoCollection<U> Collection = database.GetCollection<U>(collectionName);
+            IMongoCollection<T> Collection = database.GetCollection<T>(collectionName);
             return Collection;
         }
 
