@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Infrastructure.DAL.Context
+namespace Infrastructure.DAL.Settings
 {
     public interface IDbSettings
     {

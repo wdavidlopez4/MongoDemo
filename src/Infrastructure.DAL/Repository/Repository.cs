@@ -9,16 +9,16 @@ namespace Infrastructure.DAL.Repository
 {
     public class Repository<T> : IModels<T> where T : class
     {
-        private readonly DbContext<T> db;
+        private readonly IDbContext db;
 
-        public Repository(DbContext<T> db)
+        public Repository(IDbContext db)
         {
             this.db = db;
         }
 
         public async Task<T> Create(T objet)
         {
-            await db.Collection.InsertOneAsync(objet);
+            await db.GetCollection<T>().InsertOneAsync(objet);
             return objet;
         }
 
