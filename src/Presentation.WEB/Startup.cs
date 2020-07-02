@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Infrastructure.IOC.Injection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +25,9 @@ namespace Presentation.WEB
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //registrar la inyeccion de dependencias
+            RegistrarInyecciones(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +56,15 @@ namespace Presentation.WEB
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        //registrar la inyeccion de dependencias que necesita el programa para funcionar
+        private static void RegistrarInyecciones(IServiceCollection services)
+        {
+            InjectionContainer.InyectarDbContext(services);
+            InjectionContainer.InyectarDbSettings(services);
+            InjectionContainer.InyectarModelos(services);
+            InjectionContainer.InyectarServicios(services);
         }
     }
 }
