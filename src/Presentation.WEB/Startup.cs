@@ -27,7 +27,7 @@ namespace Presentation.WEB
             services.AddControllersWithViews();
 
             //registrar la inyeccion de dependencias
-            RegistrarInyecciones(services);
+            RegistrarInyecciones(services, this.Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,10 +59,11 @@ namespace Presentation.WEB
         }
 
         //registrar la inyeccion de dependencias que necesita el programa para funcionar
-        private static void RegistrarInyecciones(IServiceCollection services)
+        private static void RegistrarInyecciones(IServiceCollection services, IConfiguration Configuration)
         {
+            InjectionContainer.InyectarDbSettings(services, Configuration);
+
             InjectionContainer.InyectarDbContext(services);
-            InjectionContainer.InyectarDbSettings(services);
             InjectionContainer.InyectarModelos(services);
             InjectionContainer.InyectarServicios(services);
         }
