@@ -15,8 +15,6 @@ namespace Infrastructure.DAL.Context
         //atributo que representa la db 
         private IMongoDatabase database;
 
-        //atributo que representa el nombre de la coleccion
-        private string collectionName;
 
         //constructor "llama al connet para conectarse"
         public DbContext(IDbSettings dbSettings)
@@ -24,15 +22,13 @@ namespace Infrastructure.DAL.Context
             Connect<IDbSettings>(dbSettings);
         }
 
+
         //nos conectamos a la db "en lo que sea en lo que se comvierte T, eso debe implementar IDbSettings"
         public bool Connect<T>(T dbSettings) where T : IDbSettings
         {
             //nos conectamos a la db
             cliente = new MongoClient(dbSettings.ConnectionString);
             database = cliente.GetDatabase(dbSettings.DatabaseName);
-
-            //obtenemos el nombre de la coleccion
-            collectionName = dbSettings.CollectionName;
 
             if(database != null)
             {
@@ -44,7 +40,8 @@ namespace Infrastructure.DAL.Context
         //debolvemos la colleccion
         public IMongoCollection<T> GetCollection<T> () where T : class
         {
-            IMongoCollection<T> Collection = database.GetCollection<T>(collectionName);
+            //obtenemos la coleccion de tipo T
+            IMongoCollection<T> Collection = database.GetCollection<T>(nameof(T));
             return Collection;
         }
 
