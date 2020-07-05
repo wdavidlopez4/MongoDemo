@@ -1,0 +1,47 @@
+﻿@model Presentation.WEB.ViewModel.RegistroVM
+@{
+    ViewData["Title"] = "CrearRegistro";
+}
+
+<div class="form-row">
+    <div class="col-md-12">
+        <form method="post" asp-controller="Registro" asp-action="CrearRegistro" class="form-group" enctype="multipart/form-data">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Cliente.Nombre" class="control-label"></label>
+                <input asp-for="Cliente.Nombre" type="text" class="form-control" />
+                <span asp-validation-for="Cliente.Nombre" class="text-danger"></span>
+            </div>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Cliente.Ciudad" class="control-label"></label>
+                <input asp-for="Cliente.Ciudad" type="text" class="form-control" />
+                <span asp-validation-for="Cliente.Ciudad" class="text-danger"></span>
+            </div>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Cliente.NIT" class="control-label"></label>
+                <input asp-for="Cliente.NIT" type="text" class="form-control" />
+                <span asp-validation-for="Cliente.NIT" class="text-danger"></span>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <!--enviar formulario-->
+                    <div class="col-sm">
+                        <input type="submit" value="Crear" class="btn btn-outline-dark" />
+                    </div>
+                    <!--regresar a la lista de mensajes-->
+                    <div class="col-sm">
+                        <a asp-action="Index" class="btn btn-outline-dark">Volver a lista</a>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+

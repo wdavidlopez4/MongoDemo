@@ -8,6 +8,8 @@ namespace Domain.Models
     {
         public string Id { get; set; }
 
+        public string Nombre { get; set; }
+
         public string Ciudad { get; set; }
 
         public int NIT { get; set; }
