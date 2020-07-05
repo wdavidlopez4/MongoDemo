@@ -1,5 +1,4 @@
-﻿using Application.Core.ViewModels;
-using Domain.Models;
+﻿using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +8,6 @@ namespace Application.Core.Interfaces
 {
     public interface IServices
     {
-        public Task<RegistroVM<T>> Guardar<T>(RegistroVM<T> registroVM) where T : class;
+        public Task<T> Guardar<T>(T registroVM) where T : class;
     }
 }

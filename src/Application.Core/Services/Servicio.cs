@@ -1,5 +1,4 @@
 ﻿using Application.Core.Interfaces;
-using Application.Core.ViewModels;
 using Domain.Interfaces;
 using Domain.Models;
 using System;
@@ -18,15 +17,9 @@ namespace Application.Core.Services
             this.models = models;
         }
 
-        public async Task<RegistroVM<T>> Guardar<T>(RegistroVM<T> registroVM) where T : class
+        public async Task<T> Guardar<T>(T objeto) where T : class
         {
-            var objeto = registroVM.Objet;
-
-            return new RegistroVM<T>()
-            {
-                Objet = await models.Create(objeto)
-            };
-
+            return await models.Create<T>(objeto);
         }
 
     }

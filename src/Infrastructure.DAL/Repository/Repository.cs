@@ -18,8 +18,16 @@ namespace Infrastructure.DAL.Repository
 
         public async Task<T> Create<T>(T objet) where T : class
         {
-            await db.GetCollection<T>().InsertOneAsync(objet);
-            return objet;
+            try
+            {
+                await db.GetCollection<T>().InsertOneAsync(objet);
+                return objet;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         public Task<bool> Delete<T>(T objet) where T : class
